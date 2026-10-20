@@ -16,8 +16,7 @@ Igår lärde du dig funktioner och loopar. Nästan all riktig kod handlar om **l
 2. **Klona din fork:** *Code → HTTPS → kopiera adressen*. I terminalen (Ctrl+ö i VS Code): `git clone <adressen>`. Öppna den nya mappen i VS Code och starta *Live Server*.
 3. **Gör uppgiften.** Spara och kontrollera i webbläsaren och Console (F12) efter varje steg. Gör en commit efter varje avslutat steg: `git add .` och `git commit -m "Beskriv vad du gjorde"`.
 4. **Skicka upp** när du är klar: `git push`.
-5. **Fortsätt i `mitt-projekt`** med dagens projektsteg (längre ned).
-6. **Lämna in i Microsoft Forms.**
+5. **Lämna in i Microsoft Forms.**
 
 Fastnar du: skriv ner exakt var och vad du försökt (och vilket felmeddelande du fick), och ta det först i nästa handledda pass.
 
@@ -65,38 +64,6 @@ Skriv `medNyttPris(ratt, nyttPris)`. Den ska returnera en *kopia* med nytt pris,
 
 Skapa en ny fil `rabatt.js` med en exporterad funktion `studentPris(pris)` (10 % rabatt). Importera den i `main.js` och använd den på menyn. Prova sedan tre fel med flit och läs felen: ta bort `type="module"` i `index.html`, skriv fel filnamn i `import`, och öppna `index.html` genom att dubbelklicka (utan Live Server). Skriv vad varje fel betydde.
 
-## AI-spåret (nivå 1: Förutsäg och förklara)
-
-**Testa testerna** (cirka 25 minuter, efter att du gjort din egen lösning)
-
-Du förutsäger vad koden gör innan den körs. AI förklarar och granskar, men skriver inte din lösning. Ett test som aldrig kan misslyckas är värdelöst. AI skriver gärna tester, men du måste kunna se om de faktiskt testar något.
-
-Regler: egen lösning först, du ska kunna förklara varje rad, och du loggar i `docs/ai-logg.md` i `mitt-projekt` under rubriken *Modul 5*. Reglerna står i `AI-REGLER-MODUL5.md`.
-
-1. Skriv filter- och map-funktionerna själv först.
-2. Be AI skriva fem tester till en av dem med prompten nedan.
-3. Förstör funktionen med flit (till exempel byt > mot <) och kör testerna.
-4. Går något test fortfarande grönt? Då testar det inget. Skriv om eller ta bort det.
-5. Logga hur många av AI:s tester som faktiskt fångade felet.
-
-Prompt att utgå från:
-
-```
-Här är min funktion:
-[klistra in funktionen]
-Skriv fem tester som körs med min egen
-test()- och assertEqual()-funktion.
-Ta med ett test för tom lista.
-```
-
-**Kontrollera med:**
-
-- Förstör funktionen och kör testerna.
-- Läs varje test: vad förväntas, och varför?
-- Kör testsidan i webbläsaren, inte bara i huvudet.
-
-**I ditt projekt:** Lägg dina data i js/data.js som en array av minst sex objekt, och skriv ett filter med ett test.
-
 ## Kontrollista: så vet du att du är klar
 
 - [ ] Alla 17 tester på `tests.html` är gröna.
@@ -105,7 +72,6 @@ Ta med ett test för tom lista.
 - [ ] `sorteraEfterPris` och `medNyttPris` ändrar inte originalet.
 - [ ] `rabatt.js` exporteras och importeras, och du har sett de tre felmeddelandena.
 - [ ] Du har gjort minst sex commits med beskrivande meddelanden.
-- [ ] Du har gjort AI-uppgiften och skrivit en post i `docs/ai-logg.md` i `mitt-projekt`.
 
 ## Tips om du fastnar
 
@@ -115,19 +81,6 @@ Ta med ett test för tom lista.
 - `Failed to resolve module specifier` eller `Cannot use import statement outside a module`: kontrollera `type="module"`, sökvägen (`./meny.js`) och att du kör Live Server.
 - `does not provide an export named` betyder att namnet i `import { ... }` inte matchar `export` i den andra filen.
 
-## Ditt projekt: Lägg ditt innehåll som data och bygg moduler
-
-Efter övningen jobbar du vidare i `mitt-projekt`, samma repo som i modul 4. Övningen här är träningsbanan, projektet är det som växer. Dagens steg står också i `PROJEKTSTEG-MODUL5.md` (som du kopierar till ditt projekt dag 1), under **Dag 3**.
-
-1. Skapa `js/data.js` som exporterar en array med minst sex objekt från ditt case (till exempel produkter, uppgifter eller artiklar). Varje objekt ska ha minst fyra egenskaper.
-2. Flytta funktionerna från igår till en modul: lägg `export` framför dem i `js/funktioner.js`.
-3. Skapa en funktion med `filter` och en med `map` som arbetar med din data, i `js/data-funktioner.js`.
-4. Ändra `<script>` i `index.html` till `type="module"` och importera din data i `js/main.js`. Skriv ut den i Console.
-5. Uppdatera `tests/`: kopiera `testlib.js` från övningsrepot, byt `tests.html` till `type="module"` och skriv minst ett test för varje ny funktion.
-6. Commit och push.
-
-**Klart när:** `tests/tests.html` är grönt och `js/data.js` har minst sex objekt.
-
 ## Inlämning
 
 **Deadline: imorgon klockan 09.00.** Allt lämnas in i Microsoft Forms. Du behöver inte redovisa något muntligt.
@@ -135,8 +88,7 @@ Efter övningen jobbar du vidare i `mitt-projekt`, samma repo som i modul 4. Öv
 I formuläret fyller du i:
 
 1. Länk till din fork av det här repot.
-2. Länk till ditt `mitt-projekt`.
-3. Reflektion: Vilken array-metod (`filter`, `map`, `find`, `reduce`, `sort`) kändes mest naturlig, vilken svårast, och hur skulle du förklara skillnaden mellan `map` och `filter` för en kamrat?
+2. Reflektion: Vilken array-metod (`filter`, `map`, `find`, `reduce`, `sort`) kändes mest naturlig, vilken svårast, och hur skulle du förklara skillnaden mellan `map` och `filter` för en kamrat?
 
 ## Vill du mer? (frivilligt)
 
