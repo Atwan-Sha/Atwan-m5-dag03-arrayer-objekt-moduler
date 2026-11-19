@@ -30,14 +30,18 @@ interface Kopp {
 }
 
 const kopp: Kopp = { namn: 'Latte', pris: 45, vegetarisk: true };
-console.log(kopp.namn, kopp['pris']); 
+console.log(kopp.namn, kopp['pris']);
 //* punkt används i normala fall, hakparenteser används med specialnamn som 'Latte Vanilj' eller [variabler]
 kopp.pris = 48;
 kopp.storlek = 'stor';
-console.log(Object.keys(kopp));
+console.log(Object.keys(kopp).join(', '));
 
 // UPPGIFT 3: arrayer av objekt
 // a) skriv ut hur många rätter menyn har och namnet på den första
 // b) loopa med for...of och skriv ut "namn – pris kr" för varje rätt
 // c) skriv ut namnet på den sista rätten utan att veta antalet (tips: length - 1)
-// TODO
+console.log('Antal rätter:', meny.length, ' Första rätten:', meny[0].namn);
+for (const r of meny) {
+	console.log(`${r.namn} - ${r.pris} kr`);
+}
+console.log(meny[meny.length - 1].namn);
