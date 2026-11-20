@@ -3,7 +3,8 @@
 // Typerna (Ratt, OrderRad) finns i typer.ts. Röda understrykningar tills du skrivit return är normalt.
 import { formateraPris } from './pris';
 import type { Ratt, OrderRad } from './typer';
-// import {meny} from './data';
+// import { kategorier } from './data';
+// import { meny } from './data';
 
 // 1. Alla vegetariska rätter (filter). Returnerar en ny array.
 export function vegetariskaRatter(meny: Ratt[]): Ratt[] {
@@ -47,15 +48,30 @@ export function sorteraEfterPris(meny: Ratt[]): Ratt[] {
 // 7. Totalpris för en order. order = [{ id: 1, antal: 2 }, { id: 5, antal: 1 }]
 //    Slå upp priset för varje id i menyn. Okända id räknas som 0 kr.
 export function totalPris(order: OrderRad[], meny: Ratt[]): number {
-	
+	const summa = order.reduce((total: number, orderRad): number => {
+		const ratt = meny.find((menyRad) => menyRad.id === orderRad.id);
+		if (ratt) {
+			return total + ratt.pris * orderRad.antal;
+		}
+		return total;
+	}, 0);
+	return summa;
 }
 
 // 8. Antal rätter per kategori som ett objekt: { bakverk: 3, dryck: 2, lunch: 3 } (reduce)
 export function perKategori(meny: Ratt[]): Record<string, number> {
-	// TODO
+	const kategoriObj = meny.reduce(
+		(antal, ratt) => {
+			antal[ratt.kategori] += 1;
+			return antal;
+		},
+		{ bakverk: 0, dryck: 0, lunch: 0 },
+	);
+	return kategoriObj;
 }
 
 // 9. En kopia av rätten med nytt pris. Originalet får INTE ändras (spread: { ...ratt }).
 export function medNyttPris(ratt: Ratt, nyttPris: number): Ratt {
-	// TODO
+	return { ...ratt, pris: nyttPris }; 
 }
+// att göra nya kopior förhindrar sidoeffekter i andra delar av koden som refererar till menyn
