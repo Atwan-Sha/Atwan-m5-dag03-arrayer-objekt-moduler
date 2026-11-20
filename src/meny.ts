@@ -3,8 +3,9 @@
 // Typerna (Ratt, OrderRad) finns i typer.ts. Röda understrykningar tills du skrivit return är normalt.
 import { formateraPris } from './pris';
 import type { Ratt, OrderRad } from './typer';
+import { studentPris } from './rabatt';
 // import { kategorier } from './data';
-// import { meny } from './data';
+import { meny } from './data';
 
 // 1. Alla vegetariska rätter (filter). Returnerar en ny array.
 export function vegetariskaRatter(meny: Ratt[]): Ratt[] {
@@ -72,6 +73,32 @@ export function perKategori(meny: Ratt[]): Record<string, number> {
 
 // 9. En kopia av rätten med nytt pris. Originalet får INTE ändras (spread: { ...ratt }).
 export function medNyttPris(ratt: Ratt, nyttPris: number): Ratt {
-	return { ...ratt, pris: nyttPris }; 
+	return { ...ratt, pris: nyttPris };
 }
 // att göra nya kopior förhindrar sidoeffekter i andra delar av koden som refererar till menyn
+
+// 10. Moduler:
+const studentOrder = [
+	{ id: 1, antal: 2 },
+	{ id: 5, antal: 1 },
+];
+const studentTotal = formateraPris(studentPris(totalPris(studentOrder, meny)));
+console.log(studentTotal);
+
+//* Prova fel:
+// Ta bort type="module" i index.html:
+//! Uncaught SyntaxError: Cannot use import statement outside a module (at main.ts:2:1)
+// Servern tolkar det som "gamla" javascript som inte stöder moduler, istället för nya ES-standarden
+
+// Skriv fel filnamn i import:
+//! GET http://localhost:5173/src/meny.ts net::ERR_ABORTED 500 (Internal Server Error)
+//! [plugin:vite:import-analysis] Failed to resolve import "./dat" from "src/meny.ts". Does the file exist?
+// Servern kraschar och ger fel 500 när den inte hittar den felstavade filen, vite fångar upp felet och förklarar
+
+// Öppna index.html genom att dubbelklicka (utan servern):
+//! Access to script at 'file:///C:/src/main.ts' from origin 'null' has been blocked by CORS policy:
+//! Cross origin requests are only supported for protocol schemes: chrome, chrome-experimental-site-token-provider,
+//! chrome-extension, chrome-untrusted, data, http, https, isolated-app.
+// CORS (Cross-Origin Resource Sharing) policyn är en säkerhetsmekanism
+// för att förhindra delning mellan olika domäner om inte en explicit allow-header sätts
+// som jag förstår det tolkar webbläsaren de lokala filerna som olika domäner om de inte är på en server
